@@ -27,6 +27,7 @@ def get_ip_address(ifname):
         struct.pack('256s', ifname[:15])
     )[20:24])
 
+freq = 400/2
 #==============================
 # setup arguments parsing here
 #==============================
@@ -65,7 +66,7 @@ Yx = np_abs(np.fft.rfft(x_))
 Yx_h = np_abs(np.fft.rfft(x_*np.hanning(len(x_))))
 Yx[0] = 0
 end = len(Yx)
-X = np.asarray(np.linspace(0, 400, end, endpoint=True)) 
+X = np.asarray(np.linspace(0, freq, end, endpoint=True)) 
 id = np.where( Yx == max(Yx))
 print "max Yx=", max(Yx)
 print "id=", id[0]
@@ -88,8 +89,8 @@ plt.plot(X,Yx_h,'c.-',label='FFT with Haning')
 plt.xlabel('Freq (Hz)')
 plt.legend(loc=0)
 # Velocity graph
-Vx = [0]*400
-for i in range(0,400):
+Vx = [0]*freq
+for i in range(0,freq):
 	Vx[i] = x_[i]*(39.3701/(6.28*freq_x))
 end = len(Vx)
 X = np.asarray(np.linspace(0, 0.5, end, endpoint=True))
@@ -105,7 +106,7 @@ Yy = np_abs(np.fft.rfft(y_))
 Yy_h = np_abs(np.fft.rfft(y_*np.hanning(len(y_))))
 Yy[0] = 0
 end = len(Yy)
-Xy = np.asarray(np.linspace(0, 400, end, endpoint=True))
+Xy = np.asarray(np.linspace(0, freq, end, endpoint=True))
 id = np.where( Yy == max(Yy))
 print "max Yy=", max(Yy)
 print "id=", id[0]
@@ -120,8 +121,8 @@ plt.plot(Xy,Yy_h,'c.-',label='FFT with Hanning')
 plt.legend(loc=0)
 plt.xlabel('Freq (Hz)')
 # Velocity graph
-Vy = [0]*400
-for i in range(0,400):
+Vy = [0]*freq
+for i in range(0,freq):
         Vy[i] = y_[i]*(39.3701/(6.28*freq_y))
 end = len(Vy)
 Xv = np.asarray(np.linspace(0, 0.5, end, endpoint=True))
@@ -138,7 +139,7 @@ Yz = np_abs(np.fft.rfft(z_))
 Yz_h = np_abs(np.fft.rfft(z_*np.hanning(len(z_))))
 Yz[0] = 0
 end = len(Yz)
-Xz = np.asarray(np.linspace(0, 400, end, endpoint=True))
+Xz = np.asarray(np.linspace(0, freq, end, endpoint=True))
 id = np.where( Yz == max(Yz))
 print "max Yz=", max(Yz)
 print "id=", id[0]
@@ -152,8 +153,8 @@ plt.plot(Xz,Yz_h,'c.-',label='FFT with Hanning')
 plt.legend(loc=0)
 plt.xlabel('Freq (Hz)')
 # Velocity graph
-Vz = [0]*400
-for i in range(0,400):
+Vz = [0]*freq
+for i in range(0,freq):
         Vz[i] = z_[i]*(39.3701/(6.28*freq_z))
 end = len(Vz)
 Xv = np.asarray(np.linspace(0, 0.5, end, endpoint=True))
