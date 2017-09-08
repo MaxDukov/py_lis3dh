@@ -28,6 +28,7 @@ def get_ip_address(ifname):
     )[20:24])
 
 freq = 400/2
+ampl = 140000
 #==============================
 # setup arguments parsing here
 #==============================
@@ -62,8 +63,8 @@ print "=> Processing data for LIS3DH sensor"
 print "==================================="
 ######## process  X 
 # freq graph
-Yx = np_abs(np.fft.rfft(x_))
-Yx_h = np_abs(np.fft.rfft(x_*np.hanning(len(x_))))
+Yx = np_abs(np.fft.rfft(x_))/ampl
+Yx_h = np_abs(np.fft.rfft(x_*np.hanning(len(x_))))/ampl
 Yx[0] = 0
 end = len(Yx)
 X = np.asarray(np.linspace(0, freq, end, endpoint=True)) 
@@ -102,8 +103,8 @@ plt.xlabel('time (s)')
 
 ######## process  Y
 # freq graph
-Yy = np_abs(np.fft.rfft(y_))
-Yy_h = np_abs(np.fft.rfft(y_*np.hanning(len(y_))))
+Yy = np_abs(np.fft.rfft(y_))/ampl
+Yy_h = np_abs(np.fft.rfft(y_*np.hanning(len(y_))))/ampl
 Yy[0] = 0
 end = len(Yy)
 Xy = np.asarray(np.linspace(0, freq, end, endpoint=True))
@@ -135,8 +136,8 @@ plt.xlabel('time (s)')
 
 ######## process  Z
 # freq graph
-Yz = np_abs(np.fft.rfft(z_))
-Yz_h = np_abs(np.fft.rfft(z_*np.hanning(len(z_))))
+Yz = np_abs(np.fft.rfft(z_))/ampl
+Yz_h = np_abs(np.fft.rfft(z_*np.hanning(len(z_))))/ampl
 Yz[0] = 0
 end = len(Yz)
 Xz = np.asarray(np.linspace(0, freq, end, endpoint=True))
@@ -169,4 +170,4 @@ timestr = datetime.strftime(datetime.now(), '%Y-%m-%d_%H:%M:%S')
 plt.savefig('/var/www/html/fft_all_LIS_'+timestr+'_.png')
 #if norm == 1:
 #	plt.savefig('/var/www/html/fft_all_norm_'+timestr+'_'+(str(args.sensor))+'.png')
-print 'Please have a look on results here: http://'+(str(get_ip_address('eth0')))+'/fft_all_LIS_'+timestr+'_.png'
+print 'Please have a look on results here: http://'+(str(get_ip_address('eth0')))+'/fft_all_LIS_'+timestr+'.png'

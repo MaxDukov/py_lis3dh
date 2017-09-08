@@ -58,7 +58,7 @@ if __name__ == "__main__":
     start = datetime.datetime.now()
     run = datetime.datetime.now()
     print '=== Sensor settings:'
-    print '==> Range = 4G'
+    print '==> Range = 2G'
     print '==> Data rate = 400Hz'
     print '==> Resolution = High(12-bit)'
     print '============================='
@@ -67,9 +67,9 @@ if __name__ == "__main__":
     	if (run + datetime.timedelta(0,0,2490))  <= datetime.datetime.now():
         	run = datetime.datetime.now()
                 dt_list[t] = run
-	        x_list[t] = accel.x_axis_reading()
-                y_list[t] = accel.y_axis_reading()
-                z_list[t] = accel.z_axis_reading()
+	        x_list[t] = accel.x_axis_reading()*2/4096
+                y_list[t] = accel.y_axis_reading()*2/4096
+                z_list[t] = accel.z_axis_reading()*2/4096
                 t_list[t] = accel.get_temperature()
 	        t = t+1
     print '=== data collection finished, start data saving. End time='+str(run)
