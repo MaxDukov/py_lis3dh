@@ -88,7 +88,7 @@ plt.grid(True)
 plt.plot(X,Yx,'b.-',label='Row FFT')
 plt.plot(X,Yx_h,'c.-',label='FFT with Haning')
 plt.xlabel('Freq (Hz)')
-plt.legend(loc=0)
+plt.legend(loc=2)
 # Velocity graph
 Vx = [0]*freq
 for i in range(0,freq):
@@ -119,7 +119,7 @@ plt.subplot(3, 2, 3)
 plt.grid(True)
 plt.plot(Xy,Yy,'b.-',label='Row FFT')
 plt.plot(Xy,Yy_h,'c.-',label='FFT with Hanning')
-plt.legend(loc=0)
+plt.legend(loc=2)
 plt.xlabel('Freq (Hz)')
 # Velocity graph
 Vy = [0]*freq
@@ -151,7 +151,7 @@ plt.subplot(3, 2, 5)
 plt.grid(True)
 plt.plot(Xz,Yz,'b.-',label='Row FFT')
 plt.plot(Xz,Yz_h,'c.-',label='FFT with Hanning')
-plt.legend(loc=0)
+plt.legend(loc=2)
 plt.xlabel('Freq (Hz)')
 # Velocity graph
 Vz = [0]*freq
