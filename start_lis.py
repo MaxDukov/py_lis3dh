@@ -8,7 +8,7 @@
 #========================================
 # 
 
-print "LIS3DH data collection script v1.0.01062017"
+print "LIS3DH data collection script v1.0.19092017"
 
 import os
 import sqlite3
@@ -61,6 +61,8 @@ if __name__ == "__main__":
     print '==> Range = 2G'
     print '==> Data rate = 400Hz'
     print '==> Resolution = High(12-bit)'
+    print '============================='
+    print '=== Current temperature is '+str(accel.get_temperature())
     print '============================='
     print '=== data collection started. Start time='+str(run)
     while t < size:
